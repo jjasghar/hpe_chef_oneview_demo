@@ -1,6 +1,6 @@
 require 'oneview-sdk'
-my_client = { url: 'https://192.168.20.20', user: 'Administrator', password: '***REMOVED***', api_version: 500 }
-# r_client = OneviewSDK::Client.new(user: 'Administrator', password: '***REMOVED***',  url: 'https://192.168.20.20', api_version: 500)
+my_client = { url: 'https://192.168.20.20', user: 'Administrator', password: '*******', api_version: 500 }
+# r_client = OneviewSDK::Client.new(user: 'Administrator', password: '*******',  url: 'https://192.168.20.20', api_version: 500)
 
 # Create a new fiber channel network
 oneview_fc_network 'FCNetwork1' do
