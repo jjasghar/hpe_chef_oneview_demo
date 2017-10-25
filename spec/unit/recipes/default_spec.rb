@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 #
 # Cookbook:: hpe_chef_oneview_demo
 # Spec:: default

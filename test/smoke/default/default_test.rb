@@ -1,4 +1,5 @@
 # # encoding: utf-8
+# frozen_string_literal: true
 
 # Inspec test for recipe hpe_chef_oneview_demo::default
 

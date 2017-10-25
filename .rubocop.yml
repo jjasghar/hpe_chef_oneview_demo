@@ -1,0 +1,7 @@
+AllCops:
+  Exclude:
+    - test/**/*
+    - spec/**/*
+  TargetRubyVersion: 2.4
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never
