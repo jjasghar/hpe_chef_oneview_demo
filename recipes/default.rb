@@ -71,7 +71,7 @@ powershell_script 'Adding ESXi host to Datacenter' do
     Add-VMHost -Name $esx -Location (Get-Datacenter $datacenter) -Force -RunAsync -Confirm:$false -User "root" -Password "P@rtn3r1"  EOH
 end
 
-powershell_script 'Pull down a CentOS OVA to start off with' do
+powershell_script 'Pull down a CentOS OVA and convert to template' do
 
     code <<-EOH
       # Pull down a premade OVA for CentOS
@@ -83,5 +83,21 @@ powershell_script 'Pull down a CentOS OVA to start off with' do
       # Enject the OVA in to the vCenter instance
       Get-VMHost -Name '192.168.10.59' | Import-vApp -Source 'Chef::Config['file_cache_path']/centos7.ova'
 
+      # Convert to template
+      Get-VM -name centos7 | Set-VM  -ToTemplate -Confirm:$false
     EOH
+end
+
+powershell_script 'Pull down a CentOS OVA and convert to template' do
+
+  code <<-EOH
+    # Connect to the vCenter Instance
+    Connect-VIServer -Server 192.168.10.100 -User administrator@vsphere.local -Password P@rtn3r1
+
+    # Create machines to start bootstraping
+    $VMTemplate = Get-Template -Name centos7
+    New-VM -Name 'router' -Template $VMTemplate -VMHost 192.168.10.59
+    New-VM -Name 'workstation' -Template $VMTemplate -VMHost 192.168.10.59
+
+  EOH
 end
